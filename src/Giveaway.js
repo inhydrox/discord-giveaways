@@ -71,11 +71,18 @@ class Giveaway extends EventEmitter {
          * @type {GiveawaysMessages}
          */
         this.messages = options.messages;
+        
+        this.requirement = options.requirements;
+        
         /**
          * The giveaway data
          * @type {Object}
          */
         this.options = options;
+    }
+    
+    get requirement() {
+        return this.requirement || null
     }
 
     /**
