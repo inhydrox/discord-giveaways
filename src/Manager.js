@@ -144,7 +144,9 @@ class GiveawaysManager extends EventEmitter {
                 exemptMembers: options.exemptMembers,
                 embedColor: options.embedColor,
                 embedColorEnd: options.embedColorEnd,
-                reaction: options.reaction
+                reaction: options.reaction,
+                requirement: options.requirement,
+                reqid: options.reqid
             });
             let embed = this.v12 ? new Discord.MessageEmbed() : new Discord.RichEmbed();
             embed
@@ -231,13 +233,6 @@ class GiveawaysManager extends EventEmitter {
         });
     }
 
-    async deleteGiveaway(messageID){
-        this.giveaways = this.giveaways.filter(g => g.messageID !== messageID);
-        await writeFileAsync(this.options.storage, JSON.stringify(this.giveaways), 'utf-8');
-        this.refreshStorage();
-        return;
-    }
-
     /**
      * Refresh the cache to support shards.
      * @ignore
@@ -247,66 +242,6 @@ class GiveawaysManager extends EventEmitter {
         return true;
     }
 
-    /**
-     * Gets the giveaways from the storage file, or create it
-     * @ignore
-     * @private
-     * @returns {Array<Giveaways>}
-     */
-    async getAllGiveaways() {
-        // Whether the storage file exists, or not
-        let storageExists = await existsAsync(this.options.storage);
-        // If it doesn't exists
-        if (!storageExists) {
-            // Create the file with an empty array
-            await writeFileAsync(this.options.storage, '[]', 'utf-8');
-            return [];
-        } else {
-            // If the file exists, read it
-            let storageContent = await readFileAsync(this.options.storage);
-            try {
-                let giveaways = await JSON.parse(storageContent);
-                if (Array.isArray(giveaways)) {
-                    return giveaways;
-                } else {
-                    console.log(storageContent, giveaways);
-                    throw new SyntaxError('The storage file is not properly formatted.');
-                }
-            } catch (e) {
-                if (e.message === 'Unexpected end of JSON input') {
-                    throw new SyntaxError('The storage file is not properly formatted.', e);
-                } else {
-                    throw e;
-                }
-            }
-        }
-    }
-
-    /**
-     * Edit the giveaway in the database
-     * @ignore
-     * @private
-     * @param {Snowflake} messageID The message ID identifying the giveaway
-     * @param {Object} giveawayData The giveaway data to save
-     */
-    async editGiveaway(_messageID, _giveawayData) {
-        await writeFileAsync(this.options.storage, JSON.stringify(this.giveaways), 'utf-8');
-        this.refreshStorage();
-        return;
-    }
-
-    /**
-     * Save the giveaway in the database
-     * @ignore
-     * @private
-     * @param {Snowflake} messageID The message ID identifying the giveaway
-     * @param {Object} giveawayData The giveaway data to save
-     */
-    async saveGiveaway(_messageID, _giveawayData) {
-        await writeFileAsync(this.options.storage, JSON.stringify(this.giveaways), 'utf-8');
-        this.refreshStorage();
-        return;
-    }
 
     /**
      * Mark a giveaway as ended
