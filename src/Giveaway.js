@@ -220,7 +220,8 @@ class Giveaway extends EventEmitter {
             ended: this.ended,
             winnerCount: this.winnerCount,
             prize: this.prize,
-            messages: this.messages
+            messages: this.messages,
+            requirement: this.requirement
         };
         if (this.options.hostedBy) baseData.hostedBy = this.options.hostedBy;
         if (this.options.embedColor) baseData.embedColor = this.options.embedColor;
@@ -229,6 +230,7 @@ class Giveaway extends EventEmitter {
         if (this.options.exemptPermissions) baseData.exemptPermissions = this.options.exemptPermissions;
         if (this.options.exemptMembers) baseData.exemptMembers = this.options.exemptMembers;
         if (this.options.reaction) baseData.reaction = this.options.reaction;
+        if (this.options.requirement) baseData.requirement = this.options.requirement;
         return baseData;
     }
 
