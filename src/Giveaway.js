@@ -74,6 +74,8 @@ class Giveaway extends EventEmitter {
         
         this.requirement = options.requirements;
         
+        this.reqid = options.reqid
+        
         /**
          * The giveaway data
          * @type {Object}
@@ -83,6 +85,10 @@ class Giveaway extends EventEmitter {
     
     get requirement() {
         return this.requirement || null
+    }
+    
+    get reqid () {
+        return this.reqid || null
     }
 
     /**
@@ -221,7 +227,8 @@ class Giveaway extends EventEmitter {
             winnerCount: this.winnerCount,
             prize: this.prize,
             messages: this.messages,
-            requirement: this.requirement
+            requirement: this.requirement,
+            reqid: this.reqid
         };
         if (this.options.hostedBy) baseData.hostedBy = this.options.hostedBy;
         if (this.options.embedColor) baseData.embedColor = this.options.embedColor;
@@ -231,6 +238,7 @@ class Giveaway extends EventEmitter {
         if (this.options.exemptMembers) baseData.exemptMembers = this.options.exemptMembers;
         if (this.options.reaction) baseData.reaction = this.options.reaction;
         if (this.options.requirement) baseData.requirement = this.options.requirement;
+        if (this.options.reqid) baseData.reqid = this.options.reqid
         return baseData;
     }
 
