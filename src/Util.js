@@ -44,7 +44,6 @@ const GiveawaysMessages = {
  * The giveaways manager options
  * @typedef GiveawaysManagerOptions
  *
- * @property {string} [storage='./giveaways.json'] The storage path for the giveaways.
  * @property {number} [updateCountdownEvery=5000] The giveaway update interval (in ms).
  * @property {string} [DJSlib] The Discord.js library version you want to use
  * @property {Object} [default] The default options for new giveaways.
@@ -56,7 +55,6 @@ const GiveawaysMessages = {
  * @property {string} [reaction='🎉'] The reaction to participate to the giveaways
  */
 const GiveawaysManagerOptions = {
-    storage: './giveaways.json',
     updateCountdownEvery: 5000,
     DJSlib: Discord.version.split('.')[0] === '12' ? 'v12' : 'v11',
     default: {
