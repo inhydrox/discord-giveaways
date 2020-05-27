@@ -145,8 +145,8 @@ class GiveawaysManager extends EventEmitter {
                 embedColor: options.embedColor,
                 embedColorEnd: options.embedColorEnd,
                 reaction: options.reaction,
-                requirement: options.requirement,
-                reqid: options.reqid
+                reqtype: options.reqtype,
+                reqval: options.reqval
             });
             let embed = this.v12 ? new Discord.MessageEmbed() : new Discord.RichEmbed();
             embed
