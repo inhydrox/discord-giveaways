@@ -72,9 +72,9 @@ class Giveaway extends EventEmitter {
          */
         this.messages = options.messages;
         
-        this.requirement = options.requirements;
+        this.reqtype = options.reqtype;
         
-        this.reqid = options.reqid
+        this.reqval = options.reqval
         
         /**
          * The giveaway data
@@ -84,11 +84,11 @@ class Giveaway extends EventEmitter {
     }
     
     get requirement() {
-        return this.requirement || null
+        return this.reqtype || null
     }
     
-    get reqid () {
-        return this.reqid || null
+    get reqval () {
+        return this.reqval || null
     }
 
     /**
@@ -227,8 +227,8 @@ class Giveaway extends EventEmitter {
             winnerCount: this.winnerCount,
             prize: this.prize,
             messages: this.messages,
-            requirement: this.requirement,
-            reqid: this.reqid
+            reqtype: this.reqtype,
+            reqval: this.reqval
         };
         if (this.options.hostedBy) baseData.hostedBy = this.options.hostedBy;
         if (this.options.embedColor) baseData.embedColor = this.options.embedColor;
@@ -237,8 +237,8 @@ class Giveaway extends EventEmitter {
         if (this.options.exemptPermissions) baseData.exemptPermissions = this.options.exemptPermissions;
         if (this.options.exemptMembers) baseData.exemptMembers = this.options.exemptMembers;
         if (this.options.reaction) baseData.reaction = this.options.reaction;
-        if (this.options.requirement) baseData.requirement = this.options.requirement;
-        if (this.options.reqid) baseData.reqid = this.options.reqid
+        if (this.options.requirement) baseData.reqtype = this.options.reqtype;
+        if (this.options.reqid) baseData.reqval = this.options.reqval
         return baseData;
     }
 
